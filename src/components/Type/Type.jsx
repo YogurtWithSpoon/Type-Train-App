@@ -12,15 +12,21 @@ import {
   setSec,
   setReset,
 } from "../../store/typeslice";
+import {addResult} from '../../store/resultslice';
 import { fetchText, countPress } from "./actions";
 import { countCorrectSymbols } from "./countCorrectSymbols";
+import { getCurrentData, setResult } from '../../helpers';
 
 function Type() {
   const dispatch = useDispatch();
-  const { text, userInput, started, finished } = useSelector(
+  const { text, userInput, started, finished, pressKey, symbols, sec} = useSelector(
     (store) => store.type
   );
+
+  const {theme} = useSelector(state => state.theme)
   let timerID = useRef(null);
+  const wpm = Math.floor(((symbols+1)/5) / (sec/60))
+  const accuracy = (((symbols+1)/pressKey)*100).toFixed(2)
 
   function setTimer() {
     if (!started) {
@@ -34,9 +40,11 @@ function Type() {
 
   function onFinish(userInput) {
     if (userInput === text) {
+      setResult(wpm,accuracy);
       clearInterval(timerID.current);
       dispatch(setFinish(true));
       dispatch(setStart(false));
+      dispatch(addResult({date: getCurrentData(),speed:wpm,accuracy}))
     }
   }
 
@@ -84,7 +92,7 @@ function Type() {
         <ParamsDisplay />
         <div className="text-right">
           <Button
-            variant="outline-dark"
+            variant={theme ? "light" : "dark"}
             onClick={() => {
               onClickHandler();
             }}

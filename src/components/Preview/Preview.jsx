@@ -3,10 +3,11 @@ import {useSelector} from 'react-redux';
 
 function Preview() {
   const {text,userInput} = useSelector(state => state.type)
+  const {theme} = useSelector(state => state.theme)
   const prepareText = text.split('')
-
+  
   return (
-    <div className="border rounded p-3 mb-4">
+    <div className="rounded p-3 mb-4" style={{background: theme ? 'grey': '#dee2e6'}}>
       { text ?
         prepareText.map((letter,index) => {
           let color;

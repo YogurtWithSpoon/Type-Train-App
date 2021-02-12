@@ -7,12 +7,12 @@ export const fetchText = () => {
       const request = await axios.get('https://baconipsum.com/api/?type=all-meat',{
         params: {
           type: 'all-meat',
-          sentences: 5,
+          sentences: 3,
           format: 'json'
         }
       });
       const text = request.data[0]
-      dispatch(setText('test test test test'));
+      dispatch(setText(text));
     } catch (error) {
       console.log(error)
     }
@@ -21,7 +21,6 @@ export const fetchText = () => {
 
 export const countPress = (event) => {
   return (dispatch) => {
-    console.log(event)
     if(event.keyCode === 32 || event.keyCode === 8) return
     dispatch(setPressKey())
   }

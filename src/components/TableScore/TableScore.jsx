@@ -1,27 +1,42 @@
-import React from 'react'
-import {Table} from 'react-bootstrap'
+import React from "react";
+import { Table } from "react-bootstrap";
+
+import {useSelector} from 'react-redux'
+
 function TableScore() {
+  const {theme}= useSelector(state => state.theme)
+  const {results} = useSelector(state => state.results)
   return (
     <>
-    <h3 align="right">Best 10 Attempt</h3>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Attempt</th>
-          <th>Speed</th>
-          <th>Accuracy</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>21.04</td>
-          <td>290</td>
-          <td>96%</td>
-        </tr>
-      </tbody>
-    </Table>
+      <h3 align="right">Best 5 Attempts</h3>
+      <Table variant = {theme  ? 'light' : 'dark'} striped bordered hover>
+        <thead>
+          <tr>
+            <th>Attempt</th>
+            <th>Speed</th>
+            <th>Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          {results.slice().sort((a,b) => {
+            if(a.speed === b.speed){
+              return b.accuracy - a.accuracy
+            }
+            return b.speed - a.speed}
+            ).slice(0,5).map((result,index) => {
+            let {date,speed,accuracy} = result
+            return (
+              <tr key={index}>
+                <td>{date}</td>
+                <td>{speed}</td>
+                <td>{accuracy}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </>
-  )
+  );
 }
 
-export default TableScore
+export default TableScore;
