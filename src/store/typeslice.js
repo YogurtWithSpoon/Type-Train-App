@@ -4,6 +4,7 @@ const initialState = {
   userInput: '',
   symbols: 0,
   sec: 0,
+  pressKey: 0,
   started: false,
   finished: false
 }
@@ -15,6 +16,9 @@ const typeSlice = createSlice({
       state.userInput = action.payload
     },
     setReset: state => initialState,
+    setPressKey(state,action){
+      state.pressKey = state.pressKey + 1;
+    },
     setText(state,action){
       state.text = action.payload
     },
@@ -34,4 +38,4 @@ const typeSlice = createSlice({
 })
 
 export default typeSlice.reducer
-export const {setText,setUserInput,setSymbols,setStart,setFinish,setSec,setReset} = typeSlice.actions
+export const {setText,setUserInput,setSymbols,setStart,setFinish,setSec,setReset,setPressKey} = typeSlice.actions
