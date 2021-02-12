@@ -1,11 +1,21 @@
 import React from 'react'
-import {useDispatch,useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
-function Preview() {
-  const {userInput,text} = useSelector(state => state.type)
+function Preview({userInput}) {
+  const {text} = useSelector(state => state.type)
+  const prepareText = text.split('')
+
   return (
     <div className="border rounded p-3 mb-4">
-      {text}
+      { text ?
+        prepareText.map((letter,index) => {
+          let color;
+          if(index < userInput.length){
+            color = letter === userInput[index] ? '#28a745' : '#dc3545'
+          }
+          return <span key={index} style={{background: color}}>{letter}</span>
+        }) : <span>Loading</span>
+      }
     </div>
   )
 }

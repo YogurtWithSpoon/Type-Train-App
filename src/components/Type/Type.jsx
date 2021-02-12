@@ -1,32 +1,32 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import Preview from "../Preview/Preview";
 import ParamsDisplay from '../ParamsDisplay/ParamsDisplay'
 //bootstrap
 import { FormControl, Button } from "react-bootstrap";
-import {useDispatch,useSelector} from 'react-redux';
-import {setText} from '../../store/typeslice'
+import {useDispatch} from 'react-redux';
+import {fetchText} from './actions'
 
 function Type() {
-  const {userInput} = useSelector(state => state.type);
   const dispatch = useDispatch()
-
+  const [userInput,setInput] = useState('');
+  
   const onUserInputChange = (event) => {
     const value = event.target.value;
-    dispatch(setText(value));
+    setInput(value)
   }
 
   const onClickHandler = () => {
-    dispatch(setText(''));
+    setInput('')
+    dispatch(fetchText());
   }
 
   useEffect(() => {
-
+    dispatch(fetchText());
   },[])
-
 
   return (
     <div className="type_app">
-      <Preview/>
+      <Preview userInput={userInput}/>
       <FormControl 
         as="textarea" 
         placeholder="Start type to begin" 
