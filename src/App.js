@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+//react bootstrap components
+import { Container, Row, Col } from "react-bootstrap";
+//project components
+import Header from "./components/Header/Header";
+import TableScore from "./components/TableScore/TableScore";
+import Type from "./components/Type/Type";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container mt={5} fluid="md">
+      <Header />
+      <Row>
+        <Col sm={12} md={8}>
+          <Type />
+        </Col>
+        <Col sm={12} md={4}>
+          <TableScore />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
