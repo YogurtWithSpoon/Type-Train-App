@@ -1,9 +1,11 @@
 import React from 'react'
+import {useDispatch,useSelector} from 'react-redux';
 
 function Preview() {
+  const {userInput,text} = useSelector(state => state.type)
   return (
     <div className="border rounded p-3 mb-4">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi nam veritatis quidem distinctio consequuntur nostrum dicta provident. Dolores quam voluptates cupiditate tempore officiis doloremque dolore qui recusandae sed aspernatur? Quisquam.
+      {text}
     </div>
   )
 }
