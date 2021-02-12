@@ -13,7 +13,7 @@ export const fetchText = () => {
       });
 
       const text = request.data[0]
-      dispatch(setText(text));
+      dispatch(setText('test test test test'));
     } catch (error) {
       console.log(error)
     }

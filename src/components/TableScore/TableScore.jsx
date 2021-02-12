@@ -14,7 +14,7 @@ function TableScore() {
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
+          <td>21.04</td>
           <td>290</td>
           <td>96%</td>
         </tr>

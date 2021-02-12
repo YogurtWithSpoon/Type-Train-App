@@ -1,8 +1,8 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
 
-function Preview({userInput}) {
-  const {text} = useSelector(state => state.type)
+function Preview() {
+  const {text,userInput} = useSelector(state => state.type)
   const prepareText = text.split('')
 
   return (
