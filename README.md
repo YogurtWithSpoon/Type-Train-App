@@ -4,7 +4,7 @@
 1. Склонировать репозиторий командой
 > "-git clone https://github.com/YogurtWithSpoon/Type-Train-App.git"
 2. Открыть папку в терминале/командной строке и выполнить команду 
-> "npm init"
+> "npm install"
 3. Запустить приложение командной
 > "npm start"
 
